@@ -131,10 +131,7 @@ quiz_game/
 
 ---
 
-## 7. 단계별 학습 가이드 fi
-
-> 아래는 이 미션을 처음부터 끝까지 진행하는 순서와, 각 단계에서 반드시 이해해야 할
-> 핵심 개념을 정리한 것입니다. 
+## 7. 작업단계
 
 ### STEP 0. Git 저장소 준비
 
@@ -145,17 +142,12 @@ quiz_game/
 **할 일**
 1. GitHub에서 새 저장소(Repository)를 만듭니다.
 2. 내 컴퓨터에서 폴더를 만들고 `git init`으로 로컬 저장소로 만듭니다.
-3. `.gitignore`, `README.md`를 만들고 첫 커밋을 올립니다.
+3. `.gitignore`만들고 첫 커밋을 올립니다.
 
 ```
 git init
-git add README.md .gitignore
-git commit -m "chore: 프로젝트 초기 설정"
-git remote add origin <내 저장소 주소>
-git push -u origin main
+git add .gitignore
 ```
-
----
 
 ### STEP 1. 메뉴 기능 만들기
 
@@ -164,22 +156,9 @@ git push -u origin main
 - **input() / print()**: `input()`은 사용자로부터 문자열을 입력받고, `print()`는 화면에 출력합니다.
 - **if / elif / else**: 조건에 따라 다른 코드를 실행합니다. "만약 ~라면 → 아니고 ~라면 → 그 외에는"의 흐름입니다.
 
-**예시**
-```python
-choice = input("메뉴를 선택하세요: ")
-if choice == "1":
-    print("퀴즈를 풉니다")
-elif choice == "0":
-    print("종료합니다")
-else:
-    print("잘못된 입력입니다")
-```
-
-이 프로젝트에서는 `quiz_game.py`의 `show_menu()`와 `run()` 메서드가 이 역할을 합니다.
-완성 후 커밋합니다.
 
 ```bash
-git add quiz_game.py main.py
+git add .
 git commit -m "feat: 메뉴 기능 구현"
 ```
 
@@ -192,47 +171,13 @@ git commit -m "feat: 메뉴 기능 구현"
 - **try / except**: 오류(예외, Exception)가 발생할 수 있는 코드를 감싸서, 오류가 나도 프로그램이
   멈추지 않고 대신 처리할 수 있게 해줍니다.
 
-**예시**
-```python
-while True:
-    raw = input("숫자를 입력하세요: ").strip()
-    try:
-        value = int(raw)
-        break
-    except ValueError:
-        print("숫자가 아닙니다. 다시 입력해 주세요.")
+
 ```
 
-이 프로젝트의 `get_int_input()` 함수가 바로 이 패턴입니다. `for`와 `while`의 차이는,
-**"몇 번 반복할지 정해져 있으면 for", "조건이 만족될 때까지 반복하면 while"**로 기억하면 쉽습니다.
+`get_int_input()` 함수. `for`와 `while`의 차이는,
+**"몇 번 반복할지 정해져 있으면 for", "조건이 만족될 때까지 반복하면 while"**
 
 ---
-
-### STEP 3. Quiz 클래스 만들기
-
-**개념**
-- **클래스(class)**: "설계도"입니다. 예를 들어 "붕어빵 틀"이 클래스라면, 그 틀로 찍어낸
-  붕어빵 하나하나가 "객체(object, 인스턴스)"입니다.
-- **`__init__` 메서드**: 객체가 만들어질 때 자동으로 실행되는 특별한 메서드로, 객체의 초기 상태(속성)를 정합니다.
-- **`self`**: "이 객체 자신"을 가리키는 이름입니다. `self.question`은 "이 퀴즈 객체의 question 값"이라는 뜻입니다.
-- **속성(attribute)**: 객체가 가지고 있는 데이터 (`self.question`, `self.answer` 등)
-- **메서드(method)**: 객체가 할 수 있는 행동 (`display()`, `check_answer()` 등)
-
-**예시**
-```python
-class Quiz:
-    def __init__(self, question, answer):
-        self.question = question   # 속성
-        self.answer = answer
-
-    def check_answer(self, user_answer):   # 메서드
-        return user_answer == self.answer
-
-q = Quiz("1+1은?", 2)     # Quiz 클래스로 객체(인스턴스)를 만듦
-print(q.check_answer(2))  # True
-```
-
-이 프로젝트의 `quiz.py`가 이 개념을 그대로 담고 있습니다. 완성 후 커밋합니다.
 
 ```bash
 git add quiz.py
@@ -244,6 +189,12 @@ git commit -m "feat: Quiz 클래스 구현"
 ### STEP 4. 기본 퀴즈 데이터 작성
 
 **개념**: 클래스는 "설계도"일 뿐이고, 실제 데이터는 그 설계도로 여러 개의 객체를 만들어서 리스트에 담습니다.
+- **클래스(class)**: "설계도"입니다. 예를 들어 "붕어빵 틀"이 클래스라면, 그 틀로 찍어낸
+  붕어빵 하나하나가 "객체(object, 인스턴스)"입니다.
+- **`__init__` 메서드**: 객체가 만들어질 때 자동으로 실행되는 특별한 메서드로, 객체의 초기 상태(속성)를 정합니다.
+- **`self`**: "이 객체 자신"을 가리키는 이름입니다. `self.question`은 "이 퀴즈 객체의 question 값"이라는 뜻입니다.
+- **속성(attribute)**: 객체가 가지고 있는 데이터 (`self.question`, `self.answer` 등)
+- **메서드(method)**: 객체가 할 수 있는 행동 (`display()`, `check_answer()` 등)
 
 ```python
 quizzes = [
@@ -252,7 +203,7 @@ quizzes = [
 ]
 ```
 
-`quiz_game.py`의 `default_quizzes()` 메서드가 이 역할을 합니다. 완성 후 커밋합니다.
+`quiz_game.py`의 `default_quizzes()` 메서드
 
 ---
 
@@ -263,13 +214,14 @@ quizzes = [
 만들 때 기존 코드가 망가질 걱정 없이 작업할 수 있습니다.
 
 ```bash
-git checkout -b feature/play-quiz   # 새 브랜치 생성 + 이동
-# ... play_quiz() 기능 작성 ...
+git checkout -b feature_quiz   # 새 브랜치 생성 + 이동
+# ... 기능 작성 ...
 git add quiz_game.py
-git commit -m "feat: 퀴즈 풀기 기능 구현"
+git commit -m "quiz_game 수정 -branch
 git checkout main
-git merge feature/play-quiz          # main에 병합
+git merge feature_quiz          # main에 병합
 ```
+![merge error](capture/error_merge.png)
 
 **개념 (리스트 반복 + 함수 반환값)**: `for quiz in quizzes:` 처럼 리스트의 각 원소를 하나씩
 꺼내 반복 작업을 할 수 있습니다. 함수(또는 메서드)가 계산한 결과를 `return`으로 돌려주면,
@@ -354,7 +306,7 @@ with open("state.json", "r", encoding="utf-8") as f:
 
 ```bash
 git add README.md structure.md
-git commit -m "docs: README 및 구조 설명 작성"
+git commit -m "README 및 구조 설명 작성"
 git push
 ```
 
