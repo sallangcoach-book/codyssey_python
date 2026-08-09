@@ -1,0 +1,11 @@
+# Python 캐시 파일 (자동 생성되므로 Git에 올릴 필요가 없습니다)
+__pycache__/
+*.pyc
+
+# 가상환경 폴더를 사용하는 경우
+venv/
+.venv/
+
+# OS가 자동으로 만드는 숨김 파일
+.DS_Store
+Thumbs.db
