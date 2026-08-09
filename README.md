@@ -323,17 +323,17 @@ git push
 **실습 순서**
 ```bash
 # 1) 별도 폴더에 복제
-git clone <내 저장소 주소> quiz_game_clone
+git clone <내 저장소 주소> codyssey_python_clone
 
 # 2) 복제된 폴더에서 간단한 변경 후 커밋 & 푸시
-cd quiz_game_clone
+cd codyssey_python_clone
 echo "테스트 한 줄 추가" >> README.md
 git add README.md
 git commit -m "docs: README 한 줄 추가 (clone/pull 실습)"
 git push
 
 # 3) 원래 작업 폴더로 돌아가서 pull
-cd ../quiz_game
+cd ../cosyssey_python
 git pull
 ```
 
