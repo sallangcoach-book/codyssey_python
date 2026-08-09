@@ -337,8 +337,8 @@ cd ../cosyssey_python
 git pull
 ```
 
-![alt text](capture/clone.png)
-
+![clone](capture/clone.png)
+![clone](capture/ccommit_log.png)
 ---
 
 ## 8. 부록 — 명령어 참고표
